@@ -71,7 +71,7 @@ When the collector opens a YAM arm, i2rt holds it where it is. It also sweeps ea
 
 ### Metal and Maker arms
 
-Each arm has its own CAN adapter. List them with `ls -l /dev/serial/by-id/` and put each arm's path in `arms.<side>.port` (`makermods.can_interface: slcan`). With a SocketCAN adapter, use the interface name (`can0`) and `socketcan` instead.
+Each arm has its own CAN adapter. A serial adapter (a CANable on slcan firmware) shows in `ls -l /dev/serial/by-id/`: put its path in `arms.<side>.port`. A SocketCAN adapter (a candleLight, `gs_usb`) shows in `ip -br link show type can`: put its interface name (`can0`, or the `can_follower_<l|r>` name `dreamcli setup` gives it) there instead. Each arm is opened by its own port's kind, so the two arms may use different adapters; `makermods.can_interface` is kept for older configs.
 
 Before the first session:
 
